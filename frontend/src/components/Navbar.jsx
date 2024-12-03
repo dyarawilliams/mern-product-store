@@ -16,12 +16,10 @@ const Navbar = () => {
             }}
         >
             <Text
-                color="white"
                 fontSize={{ base: "22", sm: "28" }}
                 fontWeight="bold"
                 textTransform="uppercase"
                 textAlign="center"
-                bgClip="text"
             >
                 <Link to={"/"}>Product Store</Link>
             </Text>
