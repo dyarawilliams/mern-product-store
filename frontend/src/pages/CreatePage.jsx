@@ -43,10 +43,10 @@ const CreatePage = () => {
           Create New Product
         </Heading>
         <Box 
-          w="full" 
-          bg={useColorModeValue("white", "purple.900")} 
+          w="2/3" 
+          bg={useColorModeValue("blue.500", "blue.500")} 
           p="6" 
-          rounded="lg" 
+          borderRadius="md" 
           shadow="md"
         >
           <VStack spacing="4">
@@ -55,20 +55,23 @@ const CreatePage = () => {
               name="name"
               value={newProduct.name}
               onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value})}
+              bg={useColorModeValue("white", "black")}
             />
             <Input 
               placeholder="Price"
               name="price"
               value={newProduct.price}
               onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value})}
+              bg={useColorModeValue("white", "black")}
             />
             <Input 
               placeholder="Image URL"
               name="image"
               value={newProduct.image}
               onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value})}
+              bg={useColorModeValue("white", "black")}
             />
-            <Button colorScheme="blue" onClick={handleAddProduct} w="full">
+            <Button onClick={handleAddProduct} size="md" w="full" bg={useColorModeValue("black", "white")}>
 							Add Product
 						</Button>
           </VStack>
