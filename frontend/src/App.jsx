@@ -9,7 +9,7 @@ import HomePage from "./pages/HomePage.jsx"
 
 function App() {
   return (
-    <Box minH="100vh" bg={useColorModeValue("white", "black")}>
+    <Box minH="100vh" bg={useColorModeValue("blue.500", "black")}>
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
