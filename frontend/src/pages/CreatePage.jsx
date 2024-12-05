@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Box, Container, Heading, VStack, Input } from "@chakra-ui/react";
 import { Button } from "../components/ui/button.jsx";
 import { useColorModeValue } from "../components/ui/color-mode.jsx";
-import { toaster } from "../components/ui/toaster.jsx"
+import { Toaster, toaster } from "../components/ui/toaster.jsx"
 
 import { useProductStore } from "../store/product.js";
 
@@ -10,7 +10,7 @@ const CreatePage = () => {
   const [newProduct, setNewProduct] = useState({
     name: "",
     price: "",
-    image: "",
+    image: ""
   });
 
   const { createProduct } = useProductStore();
@@ -22,15 +22,15 @@ const CreatePage = () => {
 			toaster.create({
 				title: "Error",
 				description: message,
-				status: "error",
-				isClosable: true,
+        status: "error",
+        type: "error",
 			});
 		} else {
 			toaster.create({
 				title: "Success",
 				description: message,
-				status: "success",
-				isClosable: true,
+        status: "success",
+        type: "success",
 			});
 		}
 		setNewProduct({ name: "", price: "", image: "" });
@@ -71,9 +71,10 @@ const CreatePage = () => {
               onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value})}
               bg={useColorModeValue("white", "black")}
             />
-            <Button onClick={handleAddProduct} size="md" w="full" bg={useColorModeValue("black", "white")}>
+            <Button bg={useColorModeValue("black", "white")} onClick={handleAddProduct} size="md" w="full" >
 							Add Product
 						</Button>
+            <Toaster />
           </VStack>
         </Box>
       </VStack>
