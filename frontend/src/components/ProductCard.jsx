@@ -9,12 +9,33 @@ import {
 } from "@chakra-ui/react";
 import { useColorModeValue } from "../components/ui/color-mode.jsx";
 
+import { Toaster, toaster } from "../components/ui/toaster.jsx"
+import { useProductStore } from "../store/product.js";
 import { FaEdit, FaRegTrashAlt } from "react-icons/fa"
 
 const ProductCard = ({ product }) => {
-
 	const textColor = useColorModeValue("gray.600", "gray.200");
-	const bg = useColorModeValue("white", "gray.800");
+	const bg = useColorModeValue("gray.400", "gray.800");
+
+	const { deleteProduct } = useProductStore();
+	
+
+	const handleDeleteProduct = async (pid) => {
+		const { success, message } = await deleteProduct(pid);
+		if (!success) {
+			toaster.create({
+				title: "Error",
+				description: message,
+				type: "error",
+			});
+		} else {
+			toaster.create({
+				title: "Success",
+				description: message,
+				type: "success",
+			});
+		}
+	};
 
 	return (
 		<Box
@@ -40,12 +61,12 @@ const ProductCard = ({ product }) => {
 					<IconButton bg="blue.800" aria-label="Edit Product">
 						<FaEdit />
 					</IconButton>
-					<IconButton bg="red.500" aria-label="Delete Product">
+					<IconButton bg="red.500" aria-label="Delete Product" onClick={() => handleDeleteProduct(product._id)}>
 						<FaRegTrashAlt />
 					</IconButton>
 				</HStack>
 			</Box>
-
+			<Toaster />
 		</Box>
 	);
 };
